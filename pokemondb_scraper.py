@@ -71,9 +71,9 @@ Function to parse HTML of requested page and print training attributes.
 def get_training_attributes(name):
     n = get_page(base_url + "/" + name)
     data_table = n.find_all("table", class_="vitals-table")[1]
-    ev_yield = data_table('td')[0].text
-    catch_rate = data_table('td')[1].text
-    base_friendship = data_table('td')[2].text
+    ev_yield = data_table('td')[0].text.strip()
+    catch_rate = data_table('td')[1].text.strip()
+    base_friendship = data_table('td')[2].text.strip()
     print("\nTRAINING DATA\n")
     print("EV Yield: {}".format(ev_yield))
     print("Catch Rate: {}".format(catch_rate))
