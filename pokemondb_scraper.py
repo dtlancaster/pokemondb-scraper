@@ -42,7 +42,7 @@ def get_attributes(name):
     name = n.select_one("h1").text
     data_table = n.find("table", class_="vitals-table")
     nat_dex_num = data_table('td')[0].text
-    poke_type = data_table('td')[1].text
+    poke_type = data_table.find_all("a", class_=re.compile('type-icon'))
     species = data_table('td')[2].text
     height = data_table('td')[3].text
     weight = data_table('td')[4].text
@@ -50,7 +50,11 @@ def get_attributes(name):
     print("\nBASIC DATA\n")
     print("Pokémon Name: " + name)
     print("National Pokédex Number: " + nat_dex_num)
-    print("Type(s): " + poke_type)
+    if len(poke_type) > 1:
+        print("Primary Type: " + poke_type[0].get_text())
+        print("Secondary Type: " + poke_type[1].get_text())
+    else:
+        print("Type: " + poke_type[0].get_text())
     print("Species: " + species)
     print("Height: " + height)
     print("Weight: " + weight)
