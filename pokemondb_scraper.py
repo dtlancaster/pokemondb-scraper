@@ -46,7 +46,7 @@ def get_attributes(name):
     species = data_table('td')[2].text
     height = data_table('td')[3].text
     weight = data_table('td')[4].text
-    abilities = data_table('td')[5].text
+    abilities = data_table('td')[5].find_all("a")
     print("\nBASIC DATA\n")
     print("Pokémon Name: " + name)
     print("National Pokédex Number: " + nat_dex_num)
@@ -58,6 +58,10 @@ def get_attributes(name):
     print("Species: " + species)
     print("Height: " + height)
     print("Weight: " + weight)
-    print("Abilities: " + abilities)
+    for ability in abilities:
+        if abilities.index(ability) != (len(abilities) - 1):
+            print("Ability: " + ability.get_text())
+        else:
+            print("Hidden Ability: " + ability.get_text())
 
 get_attributes(pokemon)
