@@ -59,7 +59,9 @@ def get_attributes(name):
     print("Height: " + height)
     print("Weight: " + weight)
     for ability in abilities:
-        if abilities.index(ability) != (len(abilities) - 1):
+        if len(abilities) == 1:
+            print("Ability: " + ability.get_text())
+        elif abilities.index(ability) != (len(abilities) - 1):
             print("Ability: " + ability.get_text())
         else:
             print("Hidden Ability: " + ability.get_text())
